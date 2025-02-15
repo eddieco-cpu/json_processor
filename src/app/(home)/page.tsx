@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { Container } from "./container";
+import { Panel } from "./panel";
 
 export default function page() {
 	return (
 		<section>
-			<Container />
+			<Panel />
 		</section>
 	)
 }

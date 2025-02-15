@@ -15,7 +15,7 @@ const JsonProcessor = dynamic(
 	}
 );
 
-export function Container() {
+export function Panel() {
   const [value, setValue] = useState(50);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
