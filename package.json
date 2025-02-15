@@ -1,0 +1,37 @@
+{
+	"name": "cookbook",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev -p 9090",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"@radix-ui/react-dropdown-menu": "^2.1.6",
+		"@radix-ui/react-slot": "^1.1.2",
+		"@types/jsoneditor": "^9.9.5",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"jsoneditor": "^10.1.2",
+		"lucide-react": "^0.475.0",
+		"next": "14.2.23",
+		"next-themes": "^0.4.4",
+		"react": "^18",
+		"react-dom": "^18",
+		"tailwind-merge": "^3.0.1",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"postcss": "^8",
+		"prettier": "^3.5.0",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5"
+	}
+}
