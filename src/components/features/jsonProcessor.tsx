@@ -90,8 +90,8 @@ export function JsonProcessor () {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h2 className="text-xl font-bold mb-4">JSON Editor (進階版) 2</h2>
+    <div className="w-full mx-auto p-2">
+      <h2 className="text-xl font-bold mb-4">JSON Editor (進階版)</h2>
 
       {/* 🔄 模式切換 */}
       <div className="flex gap-4 mb-4">
@@ -111,7 +111,7 @@ export function JsonProcessor () {
 
       {/* 📝 JSON 編輯器 */}
       <section className="flex justify-center items-center *:flex-shrink-0">
-      <div className="border p-2 rounded-md" ref={editorRef} style={{ height: "400px", width: "800px" }}></div>
+        <div className="border border-slate-400 p-2 rounded-md h-[500px] w-full min-w-[400px]" ref={editorRef}></div>
       </section>
 
       {/* ⚠️ 錯誤提示 */}
