@@ -1,0 +1,18 @@
+.jsoneditor {
+  border: none;
+}
+
+.jsoneditor-poweredBy {
+  display: none;
+}
+
+.nav-bar-empty {
+  display: none;
+}
+
+.jsoneditor-navigation-bar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}

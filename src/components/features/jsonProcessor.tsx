@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import JSONEditor from "jsoneditor";
-import "jsoneditor/dist/jsoneditor.min.css";
 
 import { type Mode } from "@/types/jsonProcessor";
 import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
 import { generateUUID } from "@/lib/tools";
+
+import "jsoneditor/dist/jsoneditor.min.css";
+import "@/styles/customJsoneditor.css";
 
 export function JsonProcessor ({
   jsonData,
@@ -45,7 +47,7 @@ export function JsonProcessor ({
         } catch (err: any) {
 
           //JSON 內容錯誤，設置 error
-          setError("❌ JSON 格式錯誤，請檢查格式！");
+          setError("❌ JSON 格式錯誤。");
         }
       },
       onFocus: (event) => {
@@ -148,9 +150,7 @@ export function JsonProcessor ({
 
   return (
     <div className="w-full mx-auto p-2">
-      <h2 className="text-xl font-bold mb-4">JSON Editor (進階版)</h2>
-
-      {/* 🔄 模式切換 */}
+      {/* 模式切換 */}
       {
       <div className="flex gap-4 mb-4">
         {
@@ -176,21 +176,32 @@ export function JsonProcessor ({
       </div>
       }
 
-      {/* 📝 JSON 編輯器 */}
+      {/* JSON 編輯器 */}
       <section className="flex justify-center items-center *:flex-shrink-0">
-        <div className="border border-slate-400 p-2 rounded-md h-[500px] w-full min-w-[400px]" ref={editorRef}></div>
+        <div className="jsonprocessor border border-slate-400 rounded-md overflow-hidden h-[450px] w-full min-w-[400px]" ref={editorRef}></div>
       </section>
 
-      {/* ⚠️ 錯誤提示 */}
-      {error && <p className="mt-2 text-red-500" onClick={showError}>{error}</p>}
+      {/* 錯誤提示 || 成功訊息 (下載) */}
+      {error ? (
+        <p className="mt-2 text-red-500">
+          {error} &nbsp;
+          <button className="px-4 py-2 bg-red-500 text-white rounded-md" onClick={showError}>
+            Show details
+          </button>
+        </p>
+      ) : (
+        <p className="mt-2">
+          No problem ! &nbsp;
+          <button className="px-4 py-2 bg-green-500 text-white rounded-md" onClick={handleDownload}>
+            下載 JSON
+          </button>
+        </p>
+      )}
 
       {/* 📂 匯入 & 📥 下載 */}
-      <div className="flex gap-4 mt-4">
+      {/* <div className="flex gap-4 mt-4">
         <input type="file" accept="application/json" onChange={handleFileUpload} />
-        <button className="px-4 py-2 bg-green-500 text-white rounded-md" onClick={handleDownload}>
-          下載 JSON
-        </button>
-      </div>
+      </div> */}
     </div>
   );
 }
