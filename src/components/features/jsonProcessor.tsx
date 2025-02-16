@@ -5,6 +5,7 @@ import JSONEditor from "jsoneditor";
 import "jsoneditor/dist/jsoneditor.min.css";
 
 import { type Mode } from "@/types/jsonProcessor";
+import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
 import { generateUUID } from "@/lib/tools";
 
 export function JsonProcessor ({
@@ -21,7 +22,9 @@ export function JsonProcessor ({
   const [mode, setMode] = useState<Mode>(initMode || "tree");
   const [error, setError] = useState<string | null>(null);
   const [isWorking, setIsWorking] = useState<boolean>(false);
+  
   const [id] = useState<string>(generateUUID())
+  const [windowWidth, screenWidth] = useWindowAndScreenWidth()
 
   useEffect(() => {
     if (!editorRef.current) return;
@@ -150,18 +153,26 @@ export function JsonProcessor ({
       {/* 🔄 模式切換 */}
       {
       <div className="flex gap-4 mb-4">
-        <button
-          className={`px-4 py-2 rounded-md ${mode === "tree" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-          onClick={() => setMode("tree")}
-        >
-          Tree 模式
-        </button>
-        <button
-          className={`px-4 py-2 rounded-md ${mode === "code" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-          onClick={() => setMode("code")}
-        >
-          Code 模式
-        </button>
+        {
+          (windowWidth < tabletWidth || mode === "tree") && (
+            <button
+              className={`px-4 py-2 rounded-md ${mode === "tree" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+              onClick={() => setMode("tree")}
+            >
+              Tree 模式
+            </button>
+          )
+        }
+        {
+          (windowWidth < tabletWidth || mode === "code") && (
+            <button
+              className={`px-4 py-2 rounded-md ${mode === "code" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+              onClick={() => setMode("code")}
+            >
+              Code 模式
+            </button>
+          )
+        }
       </div>
       }
 
