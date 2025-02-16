@@ -1,5 +1,2 @@
 //
-export type JsonProcessorWorker = {
-  slug: string;
-  isWorkingNow: boolean;
-}
+export type Mode = "tree" | "code"

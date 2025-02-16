@@ -4,88 +4,98 @@ import { useEffect, useRef, useState } from "react";
 import JSONEditor from "jsoneditor";
 import "jsoneditor/dist/jsoneditor.min.css";
 
-import { type JsonProcessorWorker } from "@/types/jsonProcessor";
+import { type Mode } from "@/types/jsonProcessor";
+import { generateUUID } from "@/lib/tools";
 
 export function JsonProcessor ({
   jsonData,
   setJsonData,
-  initMode,
-  jsonProcessorWorkers,
-  setJsonProcessorWorkers,
-  slug
+  initMode
 }: {
   jsonData: any;
   setJsonData: (data: any) => void;
-  initMode: "tree" | "code" | undefined;
-  jsonProcessorWorkers: JsonProcessorWorker[];
-  setJsonProcessorWorkers: React.Dispatch<React.SetStateAction<JsonProcessorWorker[]>>;
-  slug: string;
+  initMode?: Mode; 
 }) {
   const editorRef = useRef<HTMLDivElement>(null); // 綁定 editor 容器
   const editorInstance = useRef<JSONEditor | null>(null); // 儲存 JSONEditor 實例
-  const [mode, setMode] = useState<"tree" | "code">("tree"); // 編輯模式
+  const [mode, setMode] = useState<Mode>(initMode || "tree"); // 編輯模式
   const [error, setError] = useState<string | null>(null); // JSON 格式錯誤
+  const [isWorking, setIsWorking] = useState<boolean>(false);
+  const [id] = useState<string>(generateUUID())
 
   useEffect(() => {
     if (!editorRef.current) return;
 
     // 初始化 JSON Editor
     editorInstance.current = new JSONEditor(editorRef.current, {
-      //mode,
-      mode: initMode || mode,
+      mode,
       onChange: () => {
+        setIsWorking(true);
         try {
           const updatedJson = editorInstance.current?.get(); // 取得 JSON 內容
           setError(null);
           
-          //
-          setJsonProcessorWorkers((workers: JsonProcessorWorker[]) => 
-            workers.map((worker) => ({
-              ...worker,
-              isWorkingNow: worker.slug === slug
-            }))
-          );
-
-          //
-          console.log("JSON 已更新:", updatedJson);
+          //JSON 內容正確，更新 JsonData
           setJsonData(updatedJson);
+
         } catch (err: any) {
+
+          //JSON 內容錯誤，設置 error
           setError("❌ JSON 格式錯誤，請檢查格式！");
         }
+      },
+      onFocus: (event) => {
+        setIsWorking(true);
+      },
+      onBlur: (event) => {
+        setIsWorking(false);
+      },
+      onExpand: (expandParams) => {
+        console.log("expandParams: ", expandParams);
       },
       enableSort: false,
       enableTransform: false,
     });
 
-    editorInstance.current.set(jsonData); // 設定初始 JSON
+    // 設定初始 JSON
+    editorInstance.current.set(jsonData); 
+
+    //TODO: 目標編輯器編輯特定項時，其餘編輯器展開特定項
+    // if (mode === "tree") {
+    //   setTimeout(() => {
+    //     editorInstance.current?.expandAll();
+    //   }, 100);
+    // }
 
     return () => {
       editorInstance.current?.destroy(); // 清除 Editor，避免 React 重新渲染時重複初始化
     };
   }, [mode]);
 
-
+  //
   useEffect(() => {
-    if (jsonProcessorWorkers.find((worker) => worker.slug === slug)?.isWorkingNow) {
-      console.log("isWorkingNow");
-      return;
-    }
-    console.log("jsonData change not here, so set json data", slug);
-    if (editorInstance.current) {
-      editorInstance.current.set(jsonData);
-    }
-  }, [jsonData]);
+    if (!jsonData) return
+    if (!isWorking) {
+      console.log("@@@@ JSON 在我沒工作時，做了更新 @@@@");
+      editorInstance.current?.set(jsonData);
+      setError(null);
 
-  useEffect(() => {
-    if (jsonProcessorWorkers.find((worker) => worker.isWorkingNow === true)) {
-      const timer = setTimeout(() => setJsonProcessorWorkers(arr => arr.map(it => ({...it, isWorkingNow: false}))), 300);
-      return () => clearTimeout(timer); // 清除舊的 timeout，避免不必要的重置
-    } 
-    // else {
-    //   console.log("refresh", slug);
-    //   editorInstance.current?.refresh();
-    // }
-  }, [jsonProcessorWorkers]);  
+      //TODO: 目標編輯器編輯特定項時，其餘編輯器展開特定項
+      // if (mode === "tree") {
+      //   setTimeout(() => {
+      //     //1. expandAll
+      //     //editorInstance.current?.expandAll();
+      //     //2. expand
+      //     editorInstance.current?.expand({
+      //       path: ["skills"], // 目標節點 (物件的 key)
+      //       isExpand: true, // 設定為展開
+      //       recursive: false, // 只影響這一層
+      //     });
+      //   }, 100);
+      // }
+    }
+  }, [jsonData])
+
 
   // 📂 匯入 JSON
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -138,7 +148,7 @@ export function JsonProcessor ({
 
       {/* 🔄 模式切換 */}
       {
-      !initMode && <div className="flex gap-4 mb-4">
+      <div className="flex gap-4 mb-4">
         <button
           className={`px-4 py-2 rounded-md ${mode === "tree" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
           onClick={() => setMode("tree")}
