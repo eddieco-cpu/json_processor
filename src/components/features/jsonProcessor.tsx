@@ -4,29 +4,49 @@ import { useEffect, useRef, useState } from "react";
 import JSONEditor from "jsoneditor";
 import "jsoneditor/dist/jsoneditor.min.css";
 
-export function JsonProcessor () {
+import { type JsonProcessorWorker } from "@/types/jsonProcessor";
+
+export function JsonProcessor ({
+  jsonData,
+  setJsonData,
+  initMode,
+  jsonProcessorWorkers,
+  setJsonProcessorWorkers,
+  slug
+}: {
+  jsonData: any;
+  setJsonData: (data: any) => void;
+  initMode: "tree" | "code" | undefined;
+  jsonProcessorWorkers: JsonProcessorWorker[];
+  setJsonProcessorWorkers: React.Dispatch<React.SetStateAction<JsonProcessorWorker[]>>;
+  slug: string;
+}) {
   const editorRef = useRef<HTMLDivElement>(null); // 綁定 editor 容器
   const editorInstance = useRef<JSONEditor | null>(null); // 儲存 JSONEditor 實例
   const [mode, setMode] = useState<"tree" | "code">("tree"); // 編輯模式
   const [error, setError] = useState<string | null>(null); // JSON 格式錯誤
-  const [jsonData, setJsonData] = useState({
-    name: "Eddie",
-    age: 25,
-    skills: ["React", "Vue", "TypeScript"],
-    isDeveloper: true,
-    nested: { key: "value", number: 123, flag: false, empty: null },
-  });
 
   useEffect(() => {
     if (!editorRef.current) return;
 
     // 初始化 JSON Editor
     editorInstance.current = new JSONEditor(editorRef.current, {
-      mode,
+      //mode,
+      mode: initMode || mode,
       onChange: () => {
         try {
           const updatedJson = editorInstance.current?.get(); // 取得 JSON 內容
-          setError(null); // 清除錯誤
+          setError(null);
+          
+          //
+          setJsonProcessorWorkers((workers: JsonProcessorWorker[]) => 
+            workers.map((worker) => ({
+              ...worker,
+              isWorkingNow: worker.slug === slug
+            }))
+          );
+
+          //
           console.log("JSON 已更新:", updatedJson);
           setJsonData(updatedJson);
         } catch (err: any) {
@@ -43,6 +63,29 @@ export function JsonProcessor () {
       editorInstance.current?.destroy(); // 清除 Editor，避免 React 重新渲染時重複初始化
     };
   }, [mode]);
+
+
+  useEffect(() => {
+    if (jsonProcessorWorkers.find((worker) => worker.slug === slug)?.isWorkingNow) {
+      console.log("isWorkingNow");
+      return;
+    }
+    console.log("jsonData change not here, so set json data", slug);
+    if (editorInstance.current) {
+      editorInstance.current.set(jsonData);
+    }
+  }, [jsonData]);
+
+  useEffect(() => {
+    if (jsonProcessorWorkers.find((worker) => worker.isWorkingNow === true)) {
+      const timer = setTimeout(() => setJsonProcessorWorkers(arr => arr.map(it => ({...it, isWorkingNow: false}))), 300);
+      return () => clearTimeout(timer); // 清除舊的 timeout，避免不必要的重置
+    } 
+    // else {
+    //   console.log("refresh", slug);
+    //   editorInstance.current?.refresh();
+    // }
+  }, [jsonProcessorWorkers]);  
 
   // 📂 匯入 JSON
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +137,8 @@ export function JsonProcessor () {
       <h2 className="text-xl font-bold mb-4">JSON Editor (進階版)</h2>
 
       {/* 🔄 模式切換 */}
-      <div className="flex gap-4 mb-4">
+      {
+      !initMode && <div className="flex gap-4 mb-4">
         <button
           className={`px-4 py-2 rounded-md ${mode === "tree" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
           onClick={() => setMode("tree")}
@@ -108,6 +152,7 @@ export function JsonProcessor () {
           Code 模式
         </button>
       </div>
+      }
 
       {/* 📝 JSON 編輯器 */}
       <section className="flex justify-center items-center *:flex-shrink-0">
