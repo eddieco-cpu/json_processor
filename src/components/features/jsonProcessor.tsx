@@ -18,8 +18,8 @@ export function JsonProcessor ({
 }) {
   const editorRef = useRef<HTMLDivElement>(null); // 綁定 editor 容器
   const editorInstance = useRef<JSONEditor | null>(null); // 儲存 JSONEditor 實例
-  const [mode, setMode] = useState<Mode>(initMode || "tree"); // 編輯模式
-  const [error, setError] = useState<string | null>(null); // JSON 格式錯誤
+  const [mode, setMode] = useState<Mode>(initMode || "tree");
+  const [error, setError] = useState<string | null>(null);
   const [isWorking, setIsWorking] = useState<boolean>(false);
   const [id] = useState<string>(generateUUID())
 
@@ -32,7 +32,8 @@ export function JsonProcessor ({
       onChange: () => {
         setIsWorking(true);
         try {
-          const updatedJson = editorInstance.current?.get(); // 取得 JSON 內容
+          // 取得 JSON 內容
+          const updatedJson = editorInstance.current?.get(); 
           setError(null);
           
           //JSON 內容正確，更新 JsonData
@@ -50,9 +51,9 @@ export function JsonProcessor ({
       onBlur: (event) => {
         setIsWorking(false);
       },
-      onExpand: (expandParams) => {
-        console.log("expandParams: ", expandParams);
-      },
+      // onExpand: (expandParams) => {
+      //   console.log("expandParams: ", expandParams);
+      // },
       enableSort: false,
       enableTransform: false,
     });
