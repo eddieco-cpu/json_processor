@@ -1,10 +1,13 @@
 import Image from "next/image";
-import { Panel } from "./panel";
+import { Suspense } from 'react'
+import { Panel } from "./components/panel";
 
 export default function page() {
 	return (
 		<section>
-			<Panel />
+			<Suspense fallback={<div>Loading...</div>}>
+				<Panel />
+			</Suspense>
 		</section>
 	)
 }
