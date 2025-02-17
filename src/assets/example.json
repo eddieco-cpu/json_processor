@@ -1,0 +1,111 @@
+{
+  "isExample": true,
+  "company": {
+    "name": "Apple Inc.",
+    "founded": "1976-04-01",
+    "founders": ["Steve Jobs", "Steve Wozniak", "Ronald Wayne"],
+    "headquarters": {
+      "location": "Cupertino, California, USA",
+      "address": "One Apple Park Way, Cupertino, CA 95014, USA"
+    },
+    "ceo": "Tim Cook",
+    "website": "https://www.apple.com",
+    "stock": {
+      "ticker": "AAPL",
+      "exchange": "NASDAQ",
+      "market_cap": "2.87T"
+    }
+  },
+  "products": [
+    {
+      "category": "Smartphones",
+      "name": "iPhone 15 Pro",
+      "release_year": 2023,
+      "specs": {
+        "display": "6.1-inch Super Retina XDR",
+        "processor": "A17 Pro chip",
+        "camera": "48MP main camera",
+        "battery_life": "Up to 23 hours video playback"
+      },
+      "price_usd": 999
+    },
+    {
+      "category": "Laptops",
+      "name": "MacBook Pro 16-inch",
+      "release_year": 2023,
+      "specs": {
+        "display": "16.2-inch Liquid Retina XDR",
+        "processor": "M3 Max chip",
+        "memory": "32GB unified RAM",
+        "storage": "1TB SSD"
+      },
+      "price_usd": 3499
+    },
+    {
+      "category": "Tablets",
+      "name": "iPad Pro 12.9-inch",
+      "release_year": 2022,
+      "specs": {
+        "display": "12.9-inch Liquid Retina XDR",
+        "processor": "M2 chip",
+        "camera": "12MP Ultra Wide front camera",
+        "battery_life": "Up to 10 hours"
+      },
+      "price_usd": 1099
+    },
+    {
+      "category": "Wearables",
+      "name": "Apple Watch Series 9",
+      "release_year": 2023,
+      "specs": {
+        "display": "Always-On Retina display",
+        "processor": "S9 SiP",
+        "battery_life": "Up to 18 hours",
+        "features": ["Blood Oxygen", "ECG", "Temperature Sensing"]
+      },
+      "price_usd": 399
+    }
+  ],
+  "financials": {
+    "revenue": "394.3B USD",
+    "net_income": "99.8B USD",
+    "total_assets": "352.7B USD",
+    "total_equity": "50.7B USD",
+    "fiscal_year": 2023
+  },
+  "history": [
+    {
+      "year": 1976,
+      "event": "Apple Computer Company was founded in a garage."
+    },
+    {
+      "year": 1984,
+      "event": "Apple launched the first Macintosh computer."
+    },
+    {
+      "year": 2007,
+      "event": "Steve Jobs introduced the first iPhone."
+    },
+    {
+      "year": 2015,
+      "event": "Apple released the first Apple Watch."
+    },
+    {
+      "year": 2020,
+      "event": "Apple introduced its own M1 chip, transitioning away from Intel."
+    }
+  ],
+  "services": [
+    "iCloud",
+    "Apple Music",
+    "Apple TV+",
+    "Apple Arcade",
+    "Apple Pay",
+    "Apple Fitness+"
+  ],
+  "sustainability": {
+    "carbon_neutral_goal": "By 2030",
+    "recycled_materials": true,
+    "renewable_energy_usage": "100% in corporate facilities"
+  }
+}

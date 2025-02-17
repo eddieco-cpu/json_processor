@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import JSONEditor from "jsoneditor";
 
 import { type Mode } from "@/types/jsonProcessor";
 import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
+
+import { cn } from "@/lib/utils";
 import { generateUUID } from "@/lib/tools";
 
 import "jsoneditor/dist/jsoneditor.min.css";
@@ -178,7 +180,11 @@ export function JsonProcessor ({
 
       {/* JSON 編輯器 */}
       <section className="flex justify-center items-center *:flex-shrink-0">
-        <div className="jsonprocessor border border-slate-400 rounded-md overflow-hidden h-[450px] w-full min-w-[400px]" ref={editorRef}></div>
+        <div 
+          className={cn("jsonprocessor border border-slate-400 rounded-md overflow-hidden h-[calc(100vh-var(--header-height)-var(--panel-top-height)-var(--adjust-height))] w-full min-w-[400px]", (error && "jsonprocessor--active-repair" ))} 
+          style={{"--adjust-height": "150px"} as CSSProperties}
+          ref={editorRef}
+        ></div>
       </section>
 
       {/* 錯誤提示 || 成功訊息 (下載) */}

@@ -1,10 +1,11 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState, Suspense, CSSProperties } from "react";
+import { useSearchParams } from "next/navigation";
+import { useState, Suspense, CSSProperties } from "react";
 import { Wrapper } from "@/components/ui/wrapper";
 import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
-
+import example from '@/assets/example.json';
 
 const JsonProcessor = dynamic(
 	() =>
@@ -18,14 +19,23 @@ const JsonProcessor = dynamic(
 );
 
 export function Panel() {
+  const searchParams = useSearchParams();
+  const encodeURIComponentJson = searchParams?.get("json_encode_data") || "";
+  const decodeURIComponentJson = encodeURIComponentJson ? decodeURIComponent(encodeURIComponentJson) : "";  //double decode is OK
+
+  //const JsonUrl = searchParams?.get("json_encode_url") || "";
+
+  let jsonParse = null;
+  if(decodeURIComponentJson) {
+    try {
+      jsonParse = JSON.parse(decodeURIComponentJson);
+    } catch (error) {
+      console.log("invalid json_encode_data");
+    }
+  }
+
   const [viewWidth, setViewWidth] = useState(50);
-  const [jsonData, setJsonData] = useState({
-    name: "Eddie",
-    age: 25,
-    skills: ["React", "Vue", "TypeScript"],
-    isDeveloper: true,
-    nested: { key: "value", number: 123, flag: false, empty: null },
-  });
+  const [jsonData, setJsonData] = useState(jsonParse || example);
   const [windowWidth, screenWidth] = useWindowAndScreenWidth();
 
 

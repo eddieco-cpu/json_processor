@@ -16,3 +16,25 @@
   right: 0;
   z-index: 1;
 }
+
+.jsonprocessor .jsoneditor-repair {
+  border: 1px solid rgba(255,255,255,0.4);
+  background-image: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  border-radius: 4px;
+}
+
+.jsonprocessor .jsoneditor-repair::after {
+  content: "Try to Repair";
+}
+
+.jsonprocessor.jsonprocessor--active-repair .jsoneditor-repair {
+  border: 1px solid yellow;
+}
+.jsonprocessor.jsonprocessor--active-repair .jsoneditor-repair::after {
+  color: yellow;
+  opacity: 1;
+}

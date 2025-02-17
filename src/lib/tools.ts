@@ -10,6 +10,16 @@ export function generateUUID(): string {
   });
 }
 
+export function isValidJson(input: unknown): boolean {
+  if (typeof input !== "string") return false;
+  try {
+      JSON.parse(input);
+      return true;
+  } catch (error) {
+      return false;
+  }
+}
+
 /**
  * Record<string, unknown> 代表鍵是 string，值可以是任何類型，但 TypeScript 需要你在使用時進行型別檢查。
  */
