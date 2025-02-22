@@ -20,6 +20,15 @@ export function isValidJson(input: unknown): boolean {
   }
 }
 
+export function isValidURL(url: string): boolean {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Record<string, unknown> 代表鍵是 string，值可以是任何類型，但 TypeScript 需要你在使用時進行型別檢查。
  */

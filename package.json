@@ -3,9 +3,9 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev -p 3030",
+		"dev": "cross-env NODE_OPTIONS=\"--max-http-header-size=24000000 \" next dev -p 3030",
 		"build": "next build",
-		"start": "next start",
+		"start": "cross-env NODE_OPTIONS=\"--max-http-header-size=24000000 \" next start",
 		"lint": "next lint",
 		"format": "prettier --write ."
 	},
@@ -28,6 +28,9 @@
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
+		"cross-env": "^7.0.3",
+		"install": "^0.13.0",
+		"npm": "^11.1.0",
 		"postcss": "^8",
 		"prettier": "^3.5.0",
 		"prettier-plugin-tailwindcss": "^0.6.11",
