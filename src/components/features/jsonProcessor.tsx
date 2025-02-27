@@ -151,27 +151,27 @@ export function JsonProcessor ({
   }
 
   return (
-    <div className="w-full mx-auto p-2">
+    <div className=" relative w-full mx-auto p-1 pt-2">
       {/* 模式切換 */}
       {
-      <div className="flex gap-4 mb-4">
+      <div className="w-16 h-8 flex justify-center items-center absolute top-[3px] left-0 z-10 max-lg:rounded-[50px] max-lg:bg-[hsla(var(--border)/0.5)] max-lg:ring-1 max-lg:ring-border">
         {
           (windowWidth < tabletWidth || mode === "tree") && (
             <button
-              className={`px-4 py-2 rounded-md ${mode === "tree" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-              onClick={() => setMode("tree")}
+              className={` absolute top-0 left-0 text-xs aspect-square rounded-[50px] w-8 text-accent-foreground border border-border transition-all ease-linear duration-[200ms] ${mode === "tree" ? "bg-white max-lg:translate-x-[100%] " : " opacity-40 border-transparent duration-[0ms]"}`}
+              onClick={() => setMode(v => v === "tree" ? "code" : "tree")}
             >
-              Tree 模式
+              Tree
             </button>
           )
         }
         {
           (windowWidth < tabletWidth || mode === "code") && (
             <button
-              className={`px-4 py-2 rounded-md ${mode === "code" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-              onClick={() => setMode("code")}
+              className={` absolute top-0 left-0 text-xs aspect-square rounded-[50px] w-8 text-accent-foreground border border-border transition-all ease-linear duration-[200ms] ${mode === "code" ? "bg-white max-lg:translate-x-[100%] " : " opacity-40 border-transparent duration-[0ms]"}`}
+              onClick={() => setMode(v => v === "code" ? "tree" : "code")}
             >
-              Code 模式
+              Code
             </button>
           )
         }
@@ -181,8 +181,8 @@ export function JsonProcessor ({
       {/* JSON 編輯器 */}
       <section className="flex justify-center items-center *:flex-shrink-0">
         <div 
-          className={cn("jsonprocessor border border-slate-400 rounded-md overflow-hidden h-[calc(100vh-var(--header-height)-var(--panel-top-height)-var(--adjust-height))] w-full min-w-[400px]", (error && "jsonprocessor--active-repair" ))} 
-          style={{"--adjust-height": "150px"} as CSSProperties}
+          className={cn("jsonprocessor h-[calc(100vh-var(--header-height)-var(--panel-top-height)-var(--adjust-height))] w-full md:min-w-[var(--panel-min-width)]", (error && "jsonprocessor--active-repair" ))} 
+          style={{"--adjust-height": "80px"} as CSSProperties}
           ref={editorRef}
         ></div>
       </section>

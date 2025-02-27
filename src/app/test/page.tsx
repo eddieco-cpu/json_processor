@@ -8,6 +8,9 @@ export default function page() {
 				mollitia, animi tenetur qui temporibus incidunt a odio? Tempora ea quod
 				veritatis temporibus non. Autem sint perspiciatis aliquid eos provident!
 			</p>
+			<span className="material-symbols-outlined">
+        home
+      </span>
 			<p className="text-red-500 dark:text-red-300">
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit at
 				mollitia, animi tenetur qui temporibus incidunt a odio? Tempora ea quod

@@ -12,7 +12,7 @@ export const Wrapper = ({
   return (
     <div
       className={cn(
-        "wrapper w-full p-2",
+        "wrapper w-full p-1.5",
         className
       )}
       {...props}

@@ -11,7 +11,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<>
 			<html lang="en" suppressHydrationWarning>
-				<head />
+				<head>
+					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+					<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+					<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+				</head>
 				<body 
 					style={{ "--header-height": "50px", "--footer-height": "150px" } as React.CSSProperties}
 				>
@@ -23,7 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 							disableTransitionOnChange
 						>
 							<Header 
-								className="h-[var(--header-height)] border-b border-gray-200"
+								className="h-[var(--header-height)] border-b border-[hsla(var(--border)/0.4)]"
 							/>
 							<main className="min-h-[calc(100vh-60px-150px)]">
 							{children}

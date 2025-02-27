@@ -17,24 +17,132 @@
   z-index: 1;
 }
 
-.jsonprocessor .jsoneditor-repair {
-  border: 1px solid rgba(255,255,255,0.4);
-  background-image: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  border-radius: 4px;
+/* .jsonprocessor .jsoneditor-frame */
+.jsonprocessor .jsoneditor-frame {
+  border: 1px solid;
+  border-color: hsla(var(--border) / 1);
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 50px;
+}
+.jsonprocessor .jsoneditor-frame input {
+  border-color: transparent;
+}
+.jsonprocessor .jsoneditor-frame input:focus {
+  border-color: transparent;
 }
 
-.jsonprocessor .jsoneditor-repair::after {
+/* .jsonprocessor .jsoneditor-repair */
+.jsoneditor > .jsoneditor-menu > .jsoneditor-repair {
+  width: 120px;
+  order: 1;
+  height: 26px;
+  opacity: 0.35;
+  margin-left: 4px;
+}
+
+.jsonprocessor .jsoneditor-menu .jsoneditor-repair::after {
   content: "Try to Repair";
+  font-size: 12px;
+  color: hsl(var(--foreground));
 }
 
 .jsonprocessor.jsonprocessor--active-repair .jsoneditor-repair {
-  border: 1px solid yellow;
-}
-.jsonprocessor.jsonprocessor--active-repair .jsoneditor-repair::after {
-  color: yellow;
   opacity: 1;
+}
+
+/* .jsoneditor > .jsoneditor-menu */
+.jsoneditor > .jsoneditor-menu {
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 5px;
+  padding-bottom: 6px;
+  border-bottom: none;
+}
+
+.jsoneditor > .jsoneditor-menu > button {
+  margin: 0;
+  background-image: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border: 1px solid;
+  border-color: hsla(var(--border) / 1);
+  background-color: hsl(var(--background));
+  border-radius: 50px;
+  column-gap: 2px;
+  height: 32px;
+  width: 32px;
+  margin-top: -10px;
+}
+.jsoneditor > .jsoneditor-menu > button:disabled {
+  opacity: 0.3;
+}
+.jsoneditor > .jsoneditor-menu > button::before {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1;
+  display: block;
+  color: hsl(var(--accent-foreground));
+}
+.jsoneditor > .jsoneditor-menu > button:hover {
+  background-color: #fff;
+}
+
+.jsoneditor > .jsoneditor-menu .jsoneditor-search {
+  position: static;
+  margin-top: -10px;
+}
+
+@media not all and (min-width: 768px) {
+  .jsoneditor > .jsoneditor-menu .jsoneditor-search {
+    display: none;
+  }
+}
+
+/* .jsoneditor > .jsoneditor-menu icon */
+.jsoneditor > .jsoneditor-menu > .jsoneditor-format::before {
+  content: "format_align_left";
+  font-family: 'Material Icons';
+}
+.jsoneditor > .jsoneditor-menu > .jsoneditor-compact::before {
+  content: "reorder";
+  font-family: 'Material Icons';
+}
+.jsoneditor > .jsoneditor-menu > .jsoneditor-repair::before {
+  content: "precision_manufacturing";
+  font-family: 'Material Icons';
+  font-size: 18px;
+}
+.jsoneditor > .jsoneditor-menu > .jsoneditor-undo::before {
+  content: "history";
+  font-family: 'Material Icons';
+  transform: translate(-0.5px,-0.5px);
+}
+.jsoneditor > .jsoneditor-menu > .jsoneditor-redo::before {
+  content: "update";
+  font-family: 'Material Icons';
+}
+.jsoneditor > .jsoneditor-menu > .jsoneditor-expand-all::before {
+  content: "expand";
+  font-family: 'Material Icons';
+}
+.jsoneditor > .jsoneditor-menu > .jsoneditor-collapse-all::before {
+  content: "compress";
+  font-family: 'Material Icons';
+}
+
+/* .jsonprocessor .jsoneditor-mode-tree */
+.jsoneditor-navigation-bar {
+  background-color: transparent;
+  border-color: transparent;
+}
+/* .jsonprocessor .jsoneditor-mode-code */
+.jsoneditor-statusbar {
+  background-color: transparent;
+  border-color: transparent;
 }
