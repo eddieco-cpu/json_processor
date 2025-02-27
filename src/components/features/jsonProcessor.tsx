@@ -154,11 +154,11 @@ export function JsonProcessor ({
     <div className=" relative w-full mx-auto p-1 pt-2">
       {/* 模式切換 */}
       {
-      <div className="w-16 h-8 flex justify-center items-center absolute top-[3px] left-0 z-10 max-lg:rounded-[50px] max-lg:bg-[hsla(var(--border)/0.5)] max-lg:ring-1 max-lg:ring-border">
+      <div className="w-16 h-8 flex justify-center items-center absolute top-[3px] left-0 z-10 max-lg:rounded-[50px] max-lg:bg-[hsla(var(--border)/0.5)] max-lg:dark:bg-background max-lg:ring-1 max-lg:ring-border">
         {
           (windowWidth < tabletWidth || mode === "tree") && (
             <button
-              className={` absolute top-0 left-0 text-xs aspect-square rounded-[50px] w-8 text-accent-foreground border border-border transition-all ease-linear duration-[200ms] ${mode === "tree" ? "bg-white max-lg:translate-x-[100%] " : " opacity-40 border-transparent duration-[0ms]"}`}
+              className={` absolute top-0 left-0 text-xs aspect-square rounded-[50px] w-8 text-accent-foreground border border-border transition-all ease-linear ${mode === "tree" ? "bg-extreme max-lg:translate-x-[100%] " : " opacity-40 border-transparent"}`}
               onClick={() => setMode(v => v === "tree" ? "code" : "tree")}
             >
               Tree
@@ -168,7 +168,7 @@ export function JsonProcessor ({
         {
           (windowWidth < tabletWidth || mode === "code") && (
             <button
-              className={` absolute top-0 left-0 text-xs aspect-square rounded-[50px] w-8 text-accent-foreground border border-border transition-all ease-linear duration-[200ms] ${mode === "code" ? "bg-white max-lg:translate-x-[100%] " : " opacity-40 border-transparent duration-[0ms]"}`}
+              className={` absolute top-0 left-0 text-xs aspect-square rounded-[50px] w-8 text-accent-foreground border border-border transition-all ease-linear ${mode === "code" ? "bg-extreme max-lg:translate-x-[100%] " : " opacity-40 border-transparent"}`}
               onClick={() => setMode(v => v === "code" ? "tree" : "code")}
             >
               Code

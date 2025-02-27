@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import GlobalProvider from "@/contexts/globalContext";
 
 import "@/styles/globals.css";
+import "@/styles/customScrollbar.css";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (

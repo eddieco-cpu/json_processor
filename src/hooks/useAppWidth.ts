@@ -6,8 +6,8 @@ export const tabletWidth = 1023.5;
 export const mobileWidth = 767.5;
 
 export function useWindowAndScreenWidth() {
-  const [screenWidth, setScreenWidth] = useState<number>(0);
   const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [screenWidth, setScreenWidth] = useState<number>(0);
 
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {

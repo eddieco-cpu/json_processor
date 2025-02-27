@@ -10,8 +10,18 @@ const config: Config = {
 	theme: {
 		extend: {
 			colors: {
-				background: "hsl(var(--background))",
-				foreground: "hsl(var(--foreground))",
+				extreme: {
+					DEFAULT: "hsl(var(--extreme))",
+					reverse: "hsl(var(--extreme-reverse))",
+				},
+				background: {
+					DEFAULT: "hsl(var(--background))",
+				},
+				foreground: {
+					DEFAULT: "hsl(var(--foreground))",
+					"0": "hsl(var(--foreground-0))",
+					"50": "hsl(var(--foreground-50))",
+				},
 				card: {
 					DEFAULT: "hsl(var(--card))",
 					foreground: "hsl(var(--card-foreground))",
@@ -50,6 +60,10 @@ const config: Config = {
 					"4": "hsl(var(--chart-4))",
 					"5": "hsl(var(--chart-5))",
 				},
+				panel: {
+					background: "hsl(var(--panel-background))",
+					foreground: "hsl(var(--panel-foreground))",
+				}
 			},
 			borderRadius: {
 				lg: "var(--radius)",

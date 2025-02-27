@@ -90,7 +90,7 @@
   color: hsl(var(--accent-foreground));
 }
 .jsoneditor > .jsoneditor-menu > button:hover {
-  background-color: #fff;
+  background-color: hsl(var(--extreme));
 }
 
 .jsoneditor > .jsoneditor-menu .jsoneditor-search {
@@ -136,13 +136,122 @@
   font-family: 'Material Icons';
 }
 
-/* .jsonprocessor .jsoneditor-mode-tree */
+/* ** .jsonprocessor .jsoneditor-mode-tree -- tree mode ** */
 .jsoneditor-navigation-bar {
   background-color: transparent;
   border-color: transparent;
 }
-/* .jsonprocessor .jsoneditor-mode-code */
+
+/* .jsoneditor-tree */
+div.jsoneditor-tree {
+  background-color: hsl(var(--panel-background));
+}
+.jsoneditor-tree .jsoneditor-field {
+  color: hsl(var(--panel-foreground));
+}
+.jsoneditor-tree .jsoneditor-object, .jsoneditor-tree .jsoneditor-array {
+  color: hsl(var(--panel-foreground-50));
+}
+
+div.jsoneditor-field.jsoneditor-highlight, 
+div.jsoneditor-field[contenteditable=true]:focus, 
+div.jsoneditor-field[contenteditable=true]:hover, 
+div.jsoneditor-value.jsoneditor-highlight, 
+div.jsoneditor-value[contenteditable=true]:focus, 
+div.jsoneditor-value[contenteditable=true]:hover {
+  border-color: transparent;
+  background-color: #FFFBD1;
+}
+
+.dark .jsoneditor-tree .jsoneditor-string {
+  color: yellowgreen;
+}
+.dark .jsoneditor-contextmenu * {
+  border-color: hsl(var(--border)) !important;
+}
+.dark .jsoneditor-frame {
+  background-color: hsl(var(--extreme));
+}
+.dark .jsoneditor-frame * {
+  color: hsl(var(--extreme-reverse)) !important;
+}
+.dark div.jsoneditor-tree button.jsoneditor-collapsed, .dark div.jsoneditor-tree button.jsoneditor-expanded {
+  filter: invert(70%);
+}
+.dark div.jsoneditor-tree button.jsoneditor-collapsed:hover, .dark div.jsoneditor-tree button.jsoneditor-expanded:hover {
+  filter: invert(190%);
+}
+.dark div.jsoneditor-tree button.jsoneditor-dragarea {
+  filter: invert(67.5%);
+}
+.dark div.jsoneditor-tree button.jsoneditor-contextmenu-button {
+  filter: invert(67.5%);
+}
+.dark div.jsoneditor-tree button.jsoneditor-dragarea:active {
+  filter: invert(190%);
+}
+
+.dark tr.jsoneditor-highlight, .dark tr.jsoneditor-selected {
+  background-color: hsla(var(--panel-background-100) / 0.5);
+}
+
+.dark div.jsoneditor-field.jsoneditor-highlight, 
+.dark div.jsoneditor-field[contenteditable=true]:focus, 
+.dark div.jsoneditor-field[contenteditable=true]:hover, 
+.dark div.jsoneditor-value.jsoneditor-highlight, 
+.dark div.jsoneditor-value[contenteditable=true]:focus, 
+.dark div.jsoneditor-value[contenteditable=true]:hover {
+  background-color: hsla(var(--panel-background-100) / 1);
+  border-color: hsl(var(--panel-background-150));
+}
+
+.dark .jsoneditor-anchor .jsoneditor-contextmenu-root .jsoneditor-menu {
+  background-color: hsl(var(--lake-55));
+}
+.dark .jsoneditor-contextmenu .jsoneditor-menu button:focus, 
+.dark .jsoneditor-contextmenu .jsoneditor-menu button:hover {
+  background-color: hsl(var(--lake-45));
+}
+
+/* ** .jsonprocessor .jsoneditor-mode-code -- code mode ** */
 .jsoneditor-statusbar {
   background-color: transparent;
   border-color: transparent;
 }
+/* .ace_content */
+.ace_content {
+  background-color: hsl(var(--panel-background));
+}
+.ace-jsoneditor.ace_editor {
+  background-color: hsl(var(--panel-background));
+}
+.ace_scrollbar .ace_scrollbar-v {
+  background-color: hsl(var(--panel-background));
+}
+.ace_content .ace_variable {
+  color: hsl(var(--panel-foreground));
+}
+.ace-jsoneditor .ace_text-layer  {
+  color: hsl(var(--panel-foreground-50));
+}
+.dark .ace_string {
+  color: yellowgreen;
+}
+/* active 的黃線 */
+.dark .ace_active-line {
+  background-color: hsl(var(--panel-background-50)) !important;
+}
+.dark .ace-jsoneditor .ace_marker-layer .ace_selection {
+  background-color: hsl(var(--panel-background-100)) !important;
+}
+.dark .ace_layer.ace_gutter-layer {
+  background-color: hsla(var(--panel-background-50) / 1);
+  color: hsl(var(--gray-65));
+}
+.dark .ace-jsoneditor .ace_gutter-active-line {
+  background-color: hsl(var(--lake-45));
+}
+.dark .ace-jsoneditor .ace_indent-guide {
+  opacity: 0.2;
+}
+

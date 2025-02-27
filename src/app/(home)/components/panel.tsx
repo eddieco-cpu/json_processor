@@ -68,7 +68,7 @@ export function Panel({ insertedJson, insertedJsonError } : {
             className="range-control"
           />
         </div>
-        <section className={`absolute z-[1] top-0 left-0 h-full overflow-auto w-[calc(var(--range-view,50)*1%-4px)] max-lg:bg-[hsla(var(--border)/0.1)] max-lg:static max-lg:w-full`}>
+        <section className={`absolute z-[1] top-0 left-0 h-full overflow-auto w-[calc(var(--range-view,50)*1%-4px)] hover:bg-[hsla(var(--border)/0.05)] max-lg:bg-[hsla(var(--border)/0.05)] max-lg:static max-lg:w-full`}>
           <Wrapper className="md:min-w-[calc(var(--panel-min-width)+20px)]">
             <Suspense fallback={<div>Loading suspense fallback...</div>}>
               <JsonProcessor {...{jsonData, setJsonData, initMode: "code"}} />
@@ -77,7 +77,7 @@ export function Panel({ insertedJson, insertedJsonError } : {
         </section>
         {
         windowWidth > tabletWidth && (
-          <section className={`absolute z-[1] top-0 right-0 h-full overflow-auto w-[calc((100-var(--range-view,50))*1%-4px)]  max-lg:hidden`}>
+          <section className={`absolute z-[1] top-0 right-0 h-full overflow-auto w-[calc((100-var(--range-view,50))*1%-4px)] hover:bg-[hsla(var(--border)/0.05)] max-lg:hidden`}>
             <Wrapper className="md:min-w-[calc(var(--panel-min-width)+20px)]">
               <Suspense fallback={<div>Loading suspense fallback...</div>}>
                 <JsonProcessor {...{jsonData, setJsonData, initMode: "tree"}} />

@@ -14,8 +14,81 @@ body {
 
 @layer base {
 	:root {
-		--background: 60 30% 96%; 
-		--foreground: 20 14.3% 4.1%; /*general text color*/
+		--gray-100: 0 0% 100%;
+		--gray-95: 0 0% 95%;
+		--gray-90: 0 0% 90%;
+		--gray-85: 0 0% 85%;
+		--gray-80: 0 0% 80%;
+		--gray-75: 0 0% 75%;
+		--gray-70: 0 0% 70%;
+		--gray-65: 0 0% 65%;
+		--gray-60: 0 0% 60%;
+		--gray-55: 0 0% 55%;
+		--gray-50: 0 0% 50%;
+		--gray-45: 0 0% 45%;
+		--gray-40: 0 0% 40%;
+		--gray-35: 0 0% 35%;
+		--gray-30: 0 0% 30%;
+		--gray-25: 0 0% 25%;
+		--gray-20: 0 0% 20%;
+		--gray-15: 0 0% 15%;
+		--gray-10: 0 0% 10%;
+		--gray-5: 0 0% 5%;
+		--gray-0: 0 0% 0%;
+
+		--grass-95: 60 30% 95%;
+		--grass-90: 60 30% 90%;
+		--grass-85: 60 30% 85%;
+		--grass-80: 60 30% 80%;
+		--grass-75: 60 30% 75%;
+		--grass-70: 60 30% 70%;
+		--grass-65: 60 30% 65%;
+		--grass-60: 60 30% 60%;
+		--grass-55: 60 30% 55%;
+		--grass-50: 60 30% 50%;
+		--grass-45: 60 30% 45%;
+		--grass-40: 60 30% 40%;
+		--grass-35: 60 30% 35%;
+		--grass-30: 60 30% 30%;
+		--grass-25: 60 30% 25%;
+		--grass-20: 60 30% 20%;
+		--grass-15: 60 30% 15%;
+		--grass-10: 60 30% 10%;
+		--grass-5: 60 30% 5%;
+
+		--lake-95: 230 19% 95%;
+		--lake-90: 230 19% 90%;
+		--lake-85: 230 19% 85%;
+		--lake-80: 230 19% 80%;
+		--lake-75: 230 19% 75%;
+		--lake-70: 230 19% 70%;
+		--lake-65: 230 19% 65%;
+		--lake-60: 230 19% 60%;
+		--lake-55: 230 19% 55%;
+		--lake-50: 230 19% 50%;
+		--lake-45: 230 19% 45%;
+		--lake-40: 230 19% 40%;
+		--lake-35: 230 19% 35%;
+		--lake-30: 230 19% 30%;
+		--lake-25: 230 19% 25%;
+		--lake-20: 230 19% 20%;
+		--lake-15: 230 19% 15%;
+		--lake-10: 230 19% 10%;
+		--lake-5: 230 19% 5%;
+	}
+	:root {
+		/* extreme */
+		--extreme: var(--gray-100);
+		--extreme-reverse: var(--grass-95); 
+
+		/* background */
+		--background: var(--grass-95); 
+
+		/*general text color*/
+		--foreground-0: var(--grass-25); 
+		--foreground: var(--grass-30);  
+		--foreground-50:  var(--grass-35);
+
 		--card: 0 0% 100%;
 		--card-foreground: 20 14.3% 4.1%;
 		--popover: 0 0% 100%;
@@ -26,23 +99,45 @@ body {
 		--secondary-foreground: 24 9.8% 10%;
 		--muted: 60 4.8% 95.9%;
 		--muted-foreground: 25 5.3% 44.7%;
+
+		/* accent */
 		--accent: 60 4.8% 95.9%;
-		--accent-foreground: 65, 100%, 20%; /*icon text color*/
+		--accent-foreground: var(--grass-30); /*icon text color*/
+
+		--border: var(--grass-40);
+		--input:  var(--grass-40);
+		
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 60 9.1% 97.8%;
-		--border: 80 20% 70%;
-		--input:  80 20% 70%;
+
 		--ring: 20 14.3% 4.1%;
 		--chart-1: 12 76% 61%;
 		--chart-2: 173 58% 39%;
 		--chart-3: 197 37% 24%;
 		--chart-4: 43 74% 66%;
 		--chart-5: 27 87% 67%;
+
+		/* panel */
+		--panel-background: 0 0% 97.5%;
+		--panel-background-50: var(--grass-95); 
+		--panel-foreground: var(--foreground-0);
+		--panel-foreground-50: var(--foreground-50);
+
 		--radius: 0.5rem;
 	}
 	.dark {
-		--background: 20 14.3% 4.1%;
-		--foreground: 60 9.1% 97.8%;
+		/* extreme */
+		--extreme: var(--lake-10);
+		--extreme-reverse: var(--gray-100);
+
+		/* background */
+		--background: var(--lake-20); 
+
+		/*general text color*/
+		--foreground-0: var(--lake-95);
+		--foreground: var(--lake-90);
+		--foreground-50: var(--lake-60);
+
 		--card: 20 14.3% 4.1%;
 		--card-foreground: 60 9.1% 97.8%;
 		--popover: 20 14.3% 4.1%;
@@ -53,19 +148,38 @@ body {
 		--secondary-foreground: 60 9.1% 97.8%;
 		--muted: 12 6.5% 15.1%;
 		--muted-foreground: 24 5.4% 63.9%;
+
+		/* accent */
 		--accent: 12 6.5% 15.1%;
 		--accent-foreground: 60 9.1% 97.8%;
+
+		--border: var(--lake-70); 
+		--input:  var(--lake-70); 
+
 		--destructive: 0 62.8% 30.6%;
 		--destructive-foreground: 60 9.1% 97.8%;
-		--border: 12 6.5% 15.1%;
-		--input: 12 6.5% 15.1%;
+
 		--ring: 24 5.7% 82.9%;
 		--chart-1: 220 70% 50%;
 		--chart-2: 160 60% 45%;
 		--chart-3: 30 80% 55%;
 		--chart-4: 280 65% 60%;
 		--chart-5: 340 75% 55%;
+
+		/* panel */
+		--panel-background: var(--lake-15);
+		--panel-background-50: var(--lake-25); 
+		--panel-background-100: var(--lake-30); 
+		--panel-background-150: var(--lake-35); 
+		--panel-foreground: var(--lake-70);
+		--panel-foreground-50: var(--foreground-50);
 	}
+
+	/* @media not all and (min-width: 1024px) {
+		.dark {
+			--panel-background: var(--lake-15);
+		}
+	} */
 }
 
 @layer base {
@@ -104,7 +218,7 @@ body {
 		width: 4px;
 		height: calc(100vh - var(--header-height) - var(--panel-top-height));
 		border: 1px solid transparent;
-		border: 1px solid #ccc;
+		border: 1px solid hsla(var(--border) / 0.5);
 		border-top: 0px solid transparent;
 		border-bottom: 0px solid transparent;
 	}
@@ -122,7 +236,7 @@ body {
 		width: 4px;
 		height: calc(100vh - var(--header-height) - var(--panel-top-height));
 		border: 1px solid transparent;
-		border: 1px solid #ccc;
+		border: 1px solid hsla(var(--border) / 0.5);
 		border-top: 0px solid transparent;
 		border-bottom: 0px solid transparent;
 	}

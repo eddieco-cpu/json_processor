@@ -1,5 +1,6 @@
 "use client";
-import { useState, useContext, createContext, ReactNode } from "react";
+import { useState, useEffect, useContext, createContext, ReactNode } from "react";
+import { isMobile, isTablet, isDesktop } from "react-device-detect";
 import { JSONValue } from "@/types/jsonProcessor"
 
 //
@@ -21,6 +22,16 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
 	//
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [jsonData, setJsonData] = useState<JSONValue>("");
+
+	//
+	useEffect(() => {
+    //
+    if (isDesktop) {
+      document.body.classList.add("custom-scrollbar");
+    } else {
+      document.body.classList.remove("custom-scrollbar");
+    }
+  }, []);
 
 	//
 	return (
