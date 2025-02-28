@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 					<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
 					<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+					<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 				</head>
 				<body 
 					style={{ "--header-height": "50px", "--footer-height": "150px" } as React.CSSProperties}

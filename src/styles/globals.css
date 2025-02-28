@@ -70,11 +70,11 @@ body {
 		--lake-40: 230 19% 40%;
 		--lake-35: 230 19% 35%;
 		--lake-30: 230 19% 30%;
-		--lake-25: 230 19% 25%;
-		--lake-20: 230 19% 20%;
-		--lake-15: 230 19% 15%;
-		--lake-10: 230 19% 10%;
-		--lake-5: 230 19% 5%;
+		--lake-25: 230 19% 23%;
+		--lake-20: 230 19% 17%;
+		--lake-15: 230 19% 12%;
+		--lake-10: 230 19% 7%;
+		--lake-5: 230 19% 2%;
 	}
 	:root {
 		/* extreme */
@@ -118,7 +118,7 @@ body {
 		--chart-5: 27 87% 67%;
 
 		/* panel */
-		--panel-background: 0 0% 97.5%;
+		--panel-background: 60 30% 97%;
 		--panel-background-50: var(--grass-95); 
 		--panel-foreground: var(--foreground-0);
 		--panel-foreground-50: var(--foreground-50);
@@ -134,8 +134,8 @@ body {
 		--background: var(--lake-20); 
 
 		/*general text color*/
-		--foreground-0: var(--lake-95);
-		--foreground: var(--lake-90);
+		--foreground-0: var(--lake-85);
+		--foreground: var(--lake-80);
 		--foreground-50: var(--lake-60);
 
 		--card: 20 14.3% 4.1%;
@@ -151,7 +151,7 @@ body {
 
 		/* accent */
 		--accent: 12 6.5% 15.1%;
-		--accent-foreground: 60 9.1% 97.8%;
+		--accent-foreground: var(--lake-80); /*icon text color*/
 
 		--border: var(--lake-70); 
 		--input:  var(--lake-70); 
@@ -171,7 +171,7 @@ body {
 		--panel-background-50: var(--lake-25); 
 		--panel-background-100: var(--lake-30); 
 		--panel-background-150: var(--lake-35); 
-		--panel-foreground: var(--lake-70);
+		--panel-foreground: var(--lake-75); /* 文字 */
 		--panel-foreground-50: var(--foreground-50);
 	}
 

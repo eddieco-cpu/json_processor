@@ -152,6 +152,24 @@ div.jsoneditor-tree {
 .jsoneditor-tree .jsoneditor-object, .jsoneditor-tree .jsoneditor-array {
   color: hsl(var(--panel-foreground-50));
 }
+/* to do --> change tree icons */
+/* div.jsoneditor-tree button.jsoneditor-contextmenu-button {
+  background-image: none;
+  outline: 1px solid orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.jsoneditor-tree button.jsoneditor-contextmenu-button::before {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1;
+  display: block;
+  color: hsla(var(--gray-10) / 0.3);
+  content: "summarize";
+  font-family: 'Material Symbols Outlined';
+} */
 
 div.jsoneditor-field.jsoneditor-highlight, 
 div.jsoneditor-field[contenteditable=true]:focus, 
