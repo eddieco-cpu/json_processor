@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState, useRef, Suspense, CSSProperties } from "react";
 import { Wrapper } from "@/components/ui/wrapper";
+import { UploadButton } from "./upload-button";
 import { toast } from "sonner"
 import { useGlobalContext } from "@/contexts/globalContext";
 import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
@@ -57,7 +58,7 @@ export function Panel({ insertedJson, insertedJsonError } : {
     <ul className="" style={{"--panel-top-height": "50px", "--panel-min-width": "400px"} as CSSProperties}>
       {/* top */}
       <li className="h-[var(--panel-top-height)] px-2 flex justify-start items-center border-b border-[hsla(var(--border)/0.4)]">
-          <p>Insert JSON data via: paste directly (code mode only), upload file, called api</p>
+          <p>Insert JSON data via: paste directly (code mode only), upload file <UploadButton />, called api</p>
       </li>
 
       {/* panel body */}
