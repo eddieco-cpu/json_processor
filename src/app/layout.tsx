@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { ThemeProvider } from "@/components/behaviors/theme-provider";
+import { ToastMessenger } from "@/components/behaviors/toast-messenger";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
@@ -16,7 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 					<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
 					<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-					<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+					<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 				</head>
 				<body 
 					style={{ "--header-height": "50px", "--footer-height": "150px" } as React.CSSProperties}
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 							<Footer 
 								className="h-[var(--footer-height)]"
 							/>
+							<ToastMessenger />
 						</ThemeProvider>
 					</GlobalProvider>
 				</body>

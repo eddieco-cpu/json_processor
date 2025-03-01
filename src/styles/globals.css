@@ -78,8 +78,8 @@ body {
 	}
 	:root {
 		/* extreme */
-		--extreme: var(--gray-100);
-		--extreme-reverse: var(--grass-95); 
+		--extreme: var(--gray-95);
+		--extreme-reverse: var(--grass-5); 
 
 		/* background */
 		--background: var(--grass-95); 
@@ -128,7 +128,7 @@ body {
 	.dark {
 		/* extreme */
 		--extreme: var(--lake-10);
-		--extreme-reverse: var(--gray-100);
+		--extreme-reverse: var(--gray-95);
 
 		/* background */
 		--background: var(--lake-20); 
@@ -184,7 +184,7 @@ body {
 
 @layer base {
 	* {
-		@apply border-border;
+		@apply border-border outline-ring/50;
 	}
 	body {
 		@apply bg-background text-foreground;

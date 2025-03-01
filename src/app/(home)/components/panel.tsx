@@ -1,8 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState, Suspense, CSSProperties } from "react";
+import { useEffect, useState, useRef, Suspense, CSSProperties } from "react";
 import { Wrapper } from "@/components/ui/wrapper";
+import { toast } from "sonner"
 import { useGlobalContext } from "@/contexts/globalContext";
 import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
 import example from '@/assets/example.json';
@@ -27,6 +28,7 @@ export function Panel({ insertedJson, insertedJsonError } : {
   const {jsonData, setJsonData} = useGlobalContext();
   const [viewWidth, setViewWidth] = useState(50);
   const [windowWidth, screenWidth] = useWindowAndScreenWidth();
+  const effectExecuted = useRef(false);
 
   //
   const handleViewChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,11 +38,14 @@ export function Panel({ insertedJson, insertedJsonError } : {
 
   //
   useEffect(() => {
+    if (effectExecuted.current) return;
+    effectExecuted.current = true;
+
     if (insertedJsonError) {
-      alert(insertedJsonError)
+      toast.error("Failed. " + insertedJsonError)
     }
     if (insertedJson) {
-      alert("got data successfully")
+      toast.success("Got data successfully")
       setJsonData(() => insertedJson)
     } else {
       const jsonExample = example as unknown as JSONValue
