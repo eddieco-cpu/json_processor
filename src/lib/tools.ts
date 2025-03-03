@@ -1,13 +1,14 @@
 //
 import React from "react";
 
-//
-export function generateUUID(): string {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0;
-    const v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
+export const BASE_PREFIX = "JSONID_"; // has to be the same as in the middleware.ts
+
+export function generateUUID(length: number = 16): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const array = new Uint8Array(length);
+  crypto.getRandomValues(array); // 使用安全隨機數
+
+  return Array.from(array, byte => chars[byte % chars.length]).join('');
 }
 
 export function isValidJson(input: unknown): boolean {
