@@ -2,6 +2,7 @@
 
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import JSONEditor from "jsoneditor";
+import { toast } from "sonner";
 
 import { type Mode } from "@/types/jsonProcessor";
 import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
@@ -104,28 +105,6 @@ export function JsonProcessor ({
     }
   }, [jsonData])
 
-
-  // 📂 匯入 JSON
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const json = JSON.parse(e.target?.result as string);
-        //editorInstance.current?.set(json);
-        setJsonData(json);
-        editorInstance.current?.set(json);
-
-        setError(null);
-      } catch (err) {
-        setError("❌ 無法解析 JSON 檔案！");
-      }
-    };
-    reader.readAsText(file);
-  };
-
   // 📥 下載 JSON
   const handleDownload = () => {
     const json = editorInstance.current?.get();
@@ -138,6 +117,16 @@ export function JsonProcessor ({
     a.click();
     URL.revokeObjectURL(url);
   };
+
+  const handleCopy = async () => {
+    try {
+      const jsonDataStr = JSON.stringify(jsonData);
+      await navigator.clipboard.writeText(jsonDataStr);
+      toast.success("JSON 已複製到剪貼簿!");
+    } catch (err) {
+      toast.error("複製失敗: " + err);
+    }
+  }
 
   //
   const showError = async () => {
@@ -182,7 +171,7 @@ export function JsonProcessor ({
       <section className="flex justify-center items-center *:flex-shrink-0">
         <div 
           className={cn("jsonprocessor h-[calc(100vh-var(--header-height)-var(--panel-top-height)-var(--adjust-height))] w-full md:min-w-[var(--panel-min-width)]", (error && "jsonprocessor--active-repair" ))} 
-          style={{"--adjust-height": "80px"} as CSSProperties}
+          style={{"--adjust-height": "70px"} as CSSProperties}
           ref={editorRef}
         ></div>
       </section>
@@ -191,23 +180,31 @@ export function JsonProcessor ({
       {error ? (
         <p className="mt-2 text-red-500">
           {error} &nbsp;
-          <button className="px-4 py-2 bg-red-500 text-white rounded-md" onClick={showError}>
+          <button className="px-3 py-1 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white rounded-[50px] h-8 text-sm" onClick={showError}>
             Show details
           </button>
         </p>
       ) : (
-        <p className="mt-2">
+        <p className="mt-2 flex justify-start items-center gap-2">
           No problem ! &nbsp;
-          <button className="px-4 py-2 bg-green-500 text-white rounded-md" onClick={handleDownload}>
-            下載 JSON
+          <button className="px-3 py-1 inline-flex justify-center items-center gap-0.5 bg-green-500 hover:bg-green-600 active:bg-green-700 text-white rounded-[50px] h-8 text-sm" onClick={handleDownload}>
+            <span className="material-symbols-outlined text-white scale-90 ">
+              download
+            </span>
+            <span>
+              JSON
+            </span>
+          </button>
+          <button className="px-3 py-1 inline-flex justify-center items-center gap-0.5 bg-green-500 hover:bg-green-600 active:bg-green-700 rounded-[50px] text-white h-8 text-sm" onClick={handleCopy}>
+            <span className="material-symbols-outlined text-white scale-90 ">
+              content_copy
+            </span>
+            <span>
+              JSON
+            </span>
           </button>
         </p>
       )}
-
-      {/* 📂 匯入 & 📥 下載 */}
-      {/* <div className="flex gap-4 mt-4">
-        <input type="file" accept="application/json" onChange={handleFileUpload} />
-      </div> */}
     </div>
   );
 }

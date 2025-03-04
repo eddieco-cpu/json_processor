@@ -6,7 +6,7 @@ import { useEffect, useState, useRef, Suspense, CSSProperties } from "react";
 import { usePathname } from "next/navigation";
 import { Wrapper } from "@/components/ui/wrapper";
 import { UploadButton } from "./upload-button";
-import { toast } from "sonner"
+import { toast } from "sonner";
 import { useGlobalContext } from "@/contexts/globalContext";
 import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
 import example from '@/assets/example.json';
