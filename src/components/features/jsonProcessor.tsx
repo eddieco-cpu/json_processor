@@ -3,6 +3,18 @@
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import JSONEditor from "jsoneditor";
 import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
 
 import { type Mode } from "@/types/jsonProcessor";
 import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
@@ -26,6 +38,7 @@ export function JsonProcessor ({
   const editorInstance = useRef<JSONEditor | null>(null); // 儲存 JSONEditor 實例
   const [mode, setMode] = useState<Mode>(initMode || "tree");
   const [error, setError] = useState<string | null>(null);
+  const [errorDetails, setErrorDetails] = useState<(Record<string, string>)[]>([]);
   const [isWorking, setIsWorking] = useState<boolean>(false);
   
   const [id] = useState<string>(generateUUID())
@@ -85,7 +98,7 @@ export function JsonProcessor ({
   useEffect(() => {
     if (!jsonData) return
     if (!isWorking) {
-      console.log("@@@@ JSON 在我沒工作時，做了更新 @@@@");
+      // console.log("@@@@ JSON 在我沒工作時，做了更新 @@@@");
       editorInstance.current?.set(jsonData);
       setError(null);
 
@@ -105,7 +118,7 @@ export function JsonProcessor ({
     }
   }, [jsonData])
 
-  // 📥 下載 JSON
+  //
   const handleDownload = () => {
     const json = editorInstance.current?.get();
     const blob = new Blob([JSON.stringify(json, null, 2)], { type: "application/json" });
@@ -128,12 +141,17 @@ export function JsonProcessor ({
     }
   }
 
-  //
+  const handleMode = () => {
+    setMode(v => v === "tree" ? "code" : "tree");
+    setError(null);
+  }
+
   const showError = async () => {
-    console.log("showError");
     try {
       const validation = editorInstance.current?.validate();
-      console.log("validation:", validation);
+      const errors = await validation as unknown as (Record<string, string>)[];
+
+      setErrorDetails(errors)
     } catch (err) {
       console.log("err:", err);
     }
@@ -148,7 +166,7 @@ export function JsonProcessor ({
           (windowWidth < tabletWidth || mode === "tree") && (
             <button
               className={` absolute top-0 left-0 text-xs aspect-square rounded-[50px] w-8 text-accent-foreground border border-border transition-all ease-linear ${mode === "tree" ? "bg-extreme max-lg:translate-x-[100%] " : " opacity-40 border-transparent"}`}
-              onClick={() => setMode(v => v === "tree" ? "code" : "tree")}
+              onClick={handleMode}
             >
               Tree
             </button>
@@ -158,7 +176,7 @@ export function JsonProcessor ({
           (windowWidth < tabletWidth || mode === "code") && (
             <button
               className={` absolute top-0 left-0 text-xs aspect-square rounded-[50px] w-8 text-accent-foreground border border-border transition-all ease-linear ${mode === "code" ? "bg-extreme max-lg:translate-x-[100%] " : " opacity-40 border-transparent"}`}
-              onClick={() => setMode(v => v === "code" ? "tree" : "code")}
+              onClick={handleMode}
             >
               Code
             </button>
@@ -180,9 +198,39 @@ export function JsonProcessor ({
       {error ? (
         <p className="mt-2 text-red-500">
           {error} &nbsp;
-          <button className="px-3 py-1 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white rounded-[50px] h-8 text-sm" onClick={showError}>
-            Show details
-          </button>
+          <AlertDialog>
+            <AlertDialogTrigger>
+              <b className="flex justify-start items-center px-3 py-1 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white rounded-[50px] h-8 text-sm" onClick={showError}>
+                Show details
+              </b>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>JSON Format Error</AlertDialogTitle>
+                <AlertDialogDescription>
+                  <span>
+                    {
+                      errorDetails.map((detail, i) => (
+                        <span key={i}>
+                          {
+                            Object.keys(detail).map((key, k) => (
+                              <span key={k} className="flex justify-start items-start gap-1 ">
+                                <b className="flex justify-start items-start text-start font-normal text-red-500 ">{key}: </b>
+                                <b className="flex justify-start items-start text-start font-light text-red-500 " dangerouslySetInnerHTML={{__html:detail[key]}}></b>
+                              </span>
+                            ))
+                          }
+                        </span>
+                      ))
+                    }
+                  </span>
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel onClick={() => setTimeout(() => setErrorDetails([]), 300) }>close</AlertDialogCancel>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </p>
       ) : (
         <p className="mt-2 flex justify-start items-center gap-2">
