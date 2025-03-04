@@ -4,7 +4,6 @@ import { Suspense } from 'react'
 import { Panel } from "../components/panel";
 import { JSONValue } from "@/types/jsonProcessor";
 
-import { secretVariable, jsonStorageObj } from "@/lib/server-data";
 import { BASE_PREFIX } from "@/lib/tools";
 
 //
@@ -14,10 +13,17 @@ export default async function page({ params: { jsonStorageID } }: { params: { js
 		notFound();
 	}
 
-	console.log("@@@ jsonStorageObj @@@ \n", jsonStorageObj);
+	//const receivedJson = jsonStorageObj[jsonStorageID] ?? "";
 
-	const insertedJson = jsonStorageObj[jsonStorageID] ?? "";
+	//
+	(globalThis as any).jsonStorageObj = (globalThis as any).jsonStorageObj || {};
+	const receivedJson = (globalThis as any).jsonStorageObj[jsonStorageID];
+
+	//
+	const insertedJson = receivedJson ? JSON.parse(JSON.stringify(receivedJson)) : null;
 	const insertedJsonError = insertedJson ? null : "No data found, please try again.";
+
+	//console.log("## receivedJson ## \n", receivedJson);
 
 	//
 	// if (insertedJson) {

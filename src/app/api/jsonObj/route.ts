@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { jsonStorageObj } from "@/lib/server-data";
+//import { jsonStorageObj } from "@/lib/server-data";
 import { type JSONObject } from "@/types/jsonProcessor";
 import { generateUUID, BASE_PREFIX } from "@/lib/tools";
 import { isValidJson } from "@/lib/tools";
 
 //
-const storage: JSONObject = jsonStorageObj;
+//const storage: JSONObject = jsonStorageObj;
 
 //
 export async function POST(request: Request) {
@@ -68,14 +68,17 @@ export async function POST(request: Request) {
 
 		// 生成 UUID 並存入 storage
 		const key = BASE_PREFIX + generateUUID();
-		storage[key] = data;
+		//storage[key] = data;
+
+		(globalThis as any).jsonStorageObj = (globalThis as any).jsonStorageObj || {};
+		(globalThis as any).jsonStorageObj[key] = data;
 
 		// 返回 json 資料
 		// const response = NextResponse.json({ message: 'Data received', id: key, data }, { status: 200 });
 
 		// 直接進行 redirect
 		const response = NextResponse.redirect(new URL(`/${key}`, request.url), {
-			status: 303,
+			status: 302,
 		});
 
 		// 改由 middeware 處理
@@ -91,7 +94,8 @@ export async function POST(request: Request) {
 
 //
 export function GET() {
-	return NextResponse.json(jsonStorageObj, { status: 200 });
+	//return NextResponse.json(jsonStorageObj, { status: 200 });
+	return NextResponse.json((globalThis as any).jsonStorageObj, { status: 200 });
 }
 
 // 處理 OPTIONS 預檢請求

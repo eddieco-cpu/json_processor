@@ -13,6 +13,9 @@ body {
 }
 
 @layer base {
+	html {
+		scroll-behavior: smooth;
+	}
 	:root {
 		--gray-100: 0 0% 100%;
 		--gray-95: 0 0% 95%;

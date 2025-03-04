@@ -1,13 +1,18 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useEffect, useState, useRef, Suspense, CSSProperties } from "react";
+import { usePathname } from "next/navigation";
 import { Wrapper } from "@/components/ui/wrapper";
 import { UploadButton } from "./upload-button";
 import { toast } from "sonner"
 import { useGlobalContext } from "@/contexts/globalContext";
 import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
 import example from '@/assets/example.json';
+
+import { deleteJsonStorageObjKey } from '@/actions/control-server-data';
+import { BASE_PREFIX } from "@/lib/tools";
 
 import { JSONValue } from "@/types/jsonProcessor";
 
@@ -26,6 +31,10 @@ export function Panel({ insertedJson, insertedJsonError } : {
   insertedJson: JSONValue;
   insertedJsonError: string | null;
 }) {
+  const pathname = usePathname();
+  const pathArray = pathname.split("/");
+  const jsonId = pathArray[pathArray.length - 1];
+
   const {jsonData, setJsonData} = useGlobalContext();
   const [viewWidth, setViewWidth] = useState(50);
   const [windowWidth, screenWidth] = useWindowAndScreenWidth();
@@ -52,13 +61,17 @@ export function Panel({ insertedJson, insertedJsonError } : {
       const jsonExample = example as unknown as JSONValue
       setJsonData(() => jsonExample)
     }
+
+    if (jsonId && jsonId.startsWith(BASE_PREFIX)) {
+      deleteJsonStorageObjKey(jsonId);
+    }
   }, [])
 
   return (
     <ul className="" style={{"--panel-top-height": "50px", "--panel-min-width": "400px"} as CSSProperties}>
       {/* top */}
       <li className="h-[var(--panel-top-height)] px-2 flex justify-start items-center border-b border-[hsla(var(--border)/0.4)]">
-          <p>Insert JSON data via: paste directly (code mode only), upload file <UploadButton />, called api</p>
+          <p className=" max-md:text-[13px]">Insert JSON via: paste directly (code mode), upload file <UploadButton />, call api <Link className=" inline-block font-semibold  hover:bg-[hsl(var(--grass-85))] dark:hover:bg-[hsl(var(--lake-35))] px-1 rounded-[3px]" href={"/doc#api_doc"}>read more</Link>, set url <Link className=" inline-block font-semibold hover:bg-[hsl(var(--grass-85))] hover:dark:bg-[hsl(var(--lake-35))] px-1 rounded-[3px]" href={"/doc#url_doc"}>read more</Link> </p>
       </li>
 
       {/* panel body */}

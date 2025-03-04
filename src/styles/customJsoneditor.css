@@ -236,6 +236,9 @@ div.jsoneditor-value[contenteditable=true]:hover {
   background-color: transparent;
   border-color: transparent;
 }
+.ace_mobile-button {
+  display: none;
+}
 /* .ace_content */
 .ace_content {
   background-color: hsl(var(--panel-background));

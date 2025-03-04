@@ -38,7 +38,7 @@ function UploadButton() {
   //
   return (
     <span className="inline-flex items-center">
-      <label className="underline cursor-pointer ">
+      <label className="underline cursor-pointer font-semibold ">
         click here
         <input
           type="file"
