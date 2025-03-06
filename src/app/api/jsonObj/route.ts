@@ -78,7 +78,7 @@ export async function POST(request: Request) {
 		// const response = NextResponse.json({ message: 'Data received', id: key, data }, { status: 200 });
 
 		// 直接進行 redirect
-		const mergedDomain = process.env.NEXT_PUBLIC_BASE_URL || request.url;
+		const mergedDomain = process.env.BASE_URL || request.url;
 		const response = NextResponse.redirect(new URL(`/${key}`, mergedDomain), {
 			status: 302,
 		});
@@ -97,9 +97,8 @@ export async function POST(request: Request) {
 //
 export function GET(request: Request) {
 	//return NextResponse.json(jsonStorageObj, { status: 200 });
-	const mergedDomain = process.env.NEXT_PUBLIC_BASE_URL || request.url;
-	console.log("mergedDomain: ", mergedDomain);
-	return NextResponse.json([(globalThis as any).jsonStorageObj, {mergedDomain}], { status: 200 });
+	const mergedDomain = process.env.BASE_URL || request.url;
+	return NextResponse.json([(globalThis as any).jsonStorageObj, { mergedDomain }], { status: 200 });
 }
 
 // 處理 OPTIONS 預檢請求

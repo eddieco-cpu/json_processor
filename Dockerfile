@@ -74,4 +74,8 @@ CMD ["node", "server.js"]
 # docker build -t json_processor:1.0 .
 
 # run container：
+# 不帶參數 (此專案不使用這命令)
 # docker run -p 8099:3000 -d json_processor:1.0
+
+# 帶參數 (BASE_URL used in api redirect) (起 docker 後，如果呼叫 post api，會需要配置)
+# docker run -e BASE_URL="http://localhost:8099/" -p 8099:3000 -d json_processor:1.0
