@@ -14,6 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<>
 			<html lang="en" suppressHydrationWarning>
 				<head>
+					<link rel="icon" type="image/svg+xml" href="/svg/logo.svg" />
 					<link
 						href="https://fonts.googleapis.com/icon?family=Material+Icons"
 						rel="stylesheet"

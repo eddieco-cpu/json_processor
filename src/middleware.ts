@@ -9,7 +9,7 @@ const allowedOrigins = new Set([
 ]);
 
 export function middleware(request: NextRequest) {
-	console.log("## middleware.ts: ## req.url: ", request.url);
+	//console.log("## middleware.ts: ## req.url: ", request.url);
 
 	const response = NextResponse.next();
 
