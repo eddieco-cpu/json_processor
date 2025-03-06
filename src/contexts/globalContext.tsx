@@ -1,18 +1,20 @@
 "use client";
-import { useState, useEffect, useContext, createContext, ReactNode } from "react";
+import {
+	useState,
+	useEffect,
+	useContext,
+	createContext,
+	ReactNode,
+} from "react";
 import { isMobile, isTablet, isDesktop } from "react-device-detect";
-import { JSONValue } from "@/types/jsonProcessor"
+import { JSONValue } from "@/types/jsonProcessor";
 
 //
 interface GlobalContextType {
 	isLoading: boolean;
-	setIsLoading: React.Dispatch<
-		React.SetStateAction<boolean>
-	>;
+	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 	jsonData: JSONValue;
-	setJsonData: React.Dispatch<
-		React.SetStateAction<JSONValue>
-	>;
+	setJsonData: React.Dispatch<React.SetStateAction<JSONValue>>;
 }
 
 //
@@ -25,13 +27,13 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
 
 	//
 	useEffect(() => {
-    //
-    if (isDesktop) {
-      document.body.classList.add("custom-scrollbar");
-    } else {
-      document.body.classList.remove("custom-scrollbar");
-    }
-  }, []);
+		//
+		if (isDesktop) {
+			document.body.classList.add("custom-scrollbar");
+		} else {
+			document.body.classList.remove("custom-scrollbar");
+		}
+	}, []);
 
 	//
 	return (
@@ -40,8 +42,8 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
 				value={{
 					isLoading,
 					setIsLoading,
-					jsonData, 
-					setJsonData
+					jsonData,
+					setJsonData,
 				}}
 			>
 				{children}

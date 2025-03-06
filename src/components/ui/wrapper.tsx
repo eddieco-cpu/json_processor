@@ -2,22 +2,16 @@ import { cn } from "@/lib/utils";
 import React, { ComponentPropsWithoutRef, ReactNode } from "react";
 
 export const Wrapper = ({
-  className,
-  children,
-  ...props
+	className,
+	children,
+	...props
 }: {
-  className?: string;
-  children?: ReactNode;
+	className?: string;
+	children?: ReactNode;
 } & ComponentPropsWithoutRef<"div">) => {
-  return (
-    <div
-      className={cn(
-        "wrapper w-full p-1.5",
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </div>
-  );
+	return (
+		<div className={cn("wrapper w-full p-1.5", className)} {...props}>
+			{children}
+		</div>
+	);
 };

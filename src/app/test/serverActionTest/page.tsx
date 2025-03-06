@@ -9,16 +9,14 @@ export default function page() {
 			<hr />
 			{/* Next sample */}
 			{/* <FetchInServerComponent /> */}
-			
+
 			{/* server component fetched & send to client component */}
-			<div className="m-4 p-2 border bg-slate-100">
+			<div className="m-4 border bg-slate-100 p-2">
 				<FetchInServerDiv />
 			</div>
 
 			{/* client component & ask server component to call api */}
-			<div className="m-4 p-2 border bg-slate-100">
-				{/* <ClientArea /> */}
-			</div>
+			<div className="m-4 border bg-slate-100 p-2">{/* <ClientArea /> */}</div>
 		</section>
-	)
+	);
 }

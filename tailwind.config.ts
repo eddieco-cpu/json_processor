@@ -63,7 +63,7 @@ const config: Config = {
 				panel: {
 					background: "hsl(var(--panel-background))",
 					foreground: "hsl(var(--panel-foreground))",
-				}
+				},
 			},
 			borderRadius: {
 				lg: "var(--radius)",

@@ -12,9 +12,8 @@ export function Footer({
 				className
 			)}
 			{...props}
-			style={{"--footer-height": "0px", padding: 0} as CSSProperties }
-		>
-		</footer>
+			style={{ "--footer-height": "0px", padding: 0 } as CSSProperties}
+		></footer>
 	);
 }
 

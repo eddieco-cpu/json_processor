@@ -1,14 +1,14 @@
 //
-export type Mode = "tree" | "code"
+export type Mode = "tree" | "code";
 
 //
 export type JSONValue =
-  | string
-  | number
-  | boolean
-  | null
-  | JSONArray
-  | JSONObject;
+	| string
+	| number
+	| boolean
+	| null
+	| JSONArray
+	| JSONObject;
 
 export type JSONArray = JSONValue[];
 

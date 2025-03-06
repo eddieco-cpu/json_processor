@@ -6,34 +6,30 @@
 
 /* WebKit (Chrome, Safari, Edge) */
 .custom-scrollbar *::-webkit-scrollbar {
-  width: 8px !important;
-  height: 8px !important; 
+	width: 8px !important;
+	height: 8px !important;
 }
 
 .custom-scrollbar *::-webkit-scrollbar-track {
-  background-color: hsla(var(--border) / 0.2); /* 背景顏色 */
+	background-color: hsla(var(--border) / 0.2); /* 背景顏色 */
 }
 
 .custom-scrollbar *::-webkit-scrollbar-thumb {
-  background-color: hsla(var(--border) / 0.5); /* 滾動條顏色 */
-  transition: background-color 0.3s ease-in-out;
+	background-color: hsla(var(--border) / 0.5); /* 滾動條顏色 */
+	transition: background-color 0.3s ease-in-out;
 }
 
 .custom-scrollbar *::-webkit-scrollbar-thumb:hover {
-  background-color: hsla(var(--border) / 0.7); 
+	background-color: hsla(var(--border) / 0.7);
 }
-
-
 
 .dark .custom-scrollbar *::-webkit-scrollbar-track {
-  background-color: hsla(var(--border) / 0);
+	background-color: hsla(var(--border) / 0);
 }
 .dark .custom-scrollbar *::-webkit-scrollbar-thumb {
-  background-color: hsla(var(--border) / 0.3); 
+	background-color: hsla(var(--border) / 0.3);
 }
 
 .dark .custom-scrollbar *::-webkit-scrollbar-thumb:hover {
-  background-color: hsla(var(--border) / 0.5);
+	background-color: hsla(var(--border) / 0.5);
 }
-
-

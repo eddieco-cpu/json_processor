@@ -1,4 +1,4 @@
 export function GET() {
-  //
-  return Response.json("Hello Developer");
+	//
+	return Response.json("Hello Developer");
 }

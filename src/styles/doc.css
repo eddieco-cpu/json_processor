@@ -1,30 +1,30 @@
 .doc_para {
-  @apply mb-10 bg-[hsl(var(--grass-90))] dark:bg-[hsl(var(--lake-25))]
+	@apply mb-10 bg-[hsl(var(--grass-90))] dark:bg-[hsl(var(--lake-25))];
 }
 .link {
-  @apply underline p-1 px-2.5 mx-1 rounded break-words text-sm bg-[hsl(var(--grass-80))] dark:bg-[hsl(var(--lake-35))] hover:bg-[hsl(var(--grass-70))] hover:dark:bg-[hsl(var(--lake-45))];
+	@apply mx-1 break-words rounded bg-[hsl(var(--grass-80))] p-1 px-2.5 text-sm underline hover:bg-[hsl(var(--grass-70))] dark:bg-[hsl(var(--lake-35))] hover:dark:bg-[hsl(var(--lake-45))];
 }
 
 .doc_article h1 {
-  @apply text-3xl my-6 mt-5 pt-6 font-semibold max-md:text-2xl max-md:mt-3 max-md:pt-5;
+	@apply my-6 mt-5 pt-6 text-3xl font-semibold max-md:mt-3 max-md:pt-5 max-md:text-2xl;
 }
 
 .doc_article h2 {
-  @apply text-2xl my-5 mb-6 font-semibold max-md:text-xl;
+	@apply my-5 mb-6 text-2xl font-semibold max-md:text-xl;
 }
 
 .doc_article h3 {
-  @apply text-lg my-3 mt-5 font-semibold;
+	@apply my-3 mt-5 text-lg font-semibold;
 }
 
 .doc_article ul {
-  @apply list-disc pl-6;
+	@apply list-disc pl-6;
 }
 
 .doc_article li {
-  @apply mb-1.5;
+	@apply mb-1.5;
 }
 
 .doc_article p {
-  @apply mb-2;
+	@apply mb-2;
 }

@@ -10,8 +10,15 @@ export const Header = ({
 	className?: string;
 } & ComponentPropsWithoutRef<"header">) => {
 	return (
-		<header className={cn("flex justify-between items-center px-4", className)} {...props}>
-			<span><Link href={"/"} className=" font-semibold" >JSON Processor</Link></span>
+		<header
+			className={cn("flex items-center justify-between px-4", className)}
+			{...props}
+		>
+			<span>
+				<Link href={"/"} className="font-semibold">
+					JSON Processor
+				</Link>
+			</span>
 			<LightModeToggler />
 		</header>
 	);

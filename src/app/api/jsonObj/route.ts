@@ -70,7 +70,8 @@ export async function POST(request: Request) {
 		const key = BASE_PREFIX + generateUUID();
 		//storage[key] = data;
 
-		(globalThis as any).jsonStorageObj = (globalThis as any).jsonStorageObj || {};
+		(globalThis as any).jsonStorageObj =
+			(globalThis as any).jsonStorageObj || {};
 		(globalThis as any).jsonStorageObj[key] = data;
 
 		// 返回 json 資料

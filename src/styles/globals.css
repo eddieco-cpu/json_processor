@@ -82,15 +82,15 @@ body {
 	:root {
 		/* extreme */
 		--extreme: var(--gray-95);
-		--extreme-reverse: var(--grass-5); 
+		--extreme-reverse: var(--grass-5);
 
 		/* background */
-		--background: var(--grass-95); 
+		--background: var(--grass-95);
 
 		/*general text color*/
-		--foreground-0: var(--grass-25); 
-		--foreground: var(--grass-30);  
-		--foreground-50:  var(--grass-35);
+		--foreground-0: var(--grass-25);
+		--foreground: var(--grass-30);
+		--foreground-50: var(--grass-35);
 
 		--card: 0 0% 100%;
 		--card-foreground: 20 14.3% 4.1%;
@@ -108,8 +108,8 @@ body {
 		--accent-foreground: var(--grass-30); /*icon text color*/
 
 		--border: var(--grass-40);
-		--input:  var(--grass-40);
-		
+		--input: var(--grass-40);
+
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 60 9.1% 97.8%;
 
@@ -122,7 +122,7 @@ body {
 
 		/* panel */
 		--panel-background: 60 30% 97%;
-		--panel-background-50: var(--grass-95); 
+		--panel-background-50: var(--grass-95);
 		--panel-foreground: var(--foreground-0);
 		--panel-foreground-50: var(--foreground-50);
 
@@ -134,7 +134,7 @@ body {
 		--extreme-reverse: var(--gray-95);
 
 		/* background */
-		--background: var(--lake-20); 
+		--background: var(--lake-20);
 
 		/*general text color*/
 		--foreground-0: var(--lake-85);
@@ -156,8 +156,8 @@ body {
 		--accent: 12 6.5% 15.1%;
 		--accent-foreground: var(--lake-80); /*icon text color*/
 
-		--border: var(--lake-70); 
-		--input:  var(--lake-70); 
+		--border: var(--lake-70);
+		--input: var(--lake-70);
 
 		--destructive: 0 62.8% 30.6%;
 		--destructive-foreground: 60 9.1% 97.8%;
@@ -171,9 +171,9 @@ body {
 
 		/* panel */
 		--panel-background: var(--lake-15);
-		--panel-background-50: var(--lake-25); 
-		--panel-background-100: var(--lake-30); 
-		--panel-background-150: var(--lake-35); 
+		--panel-background-50: var(--lake-25);
+		--panel-background-100: var(--lake-30);
+		--panel-background-150: var(--lake-35);
 		--panel-foreground: var(--lake-75); /* 文字 */
 		--panel-foreground-50: var(--foreground-50);
 	}
@@ -226,7 +226,7 @@ body {
 		border-bottom: 0px solid transparent;
 	}
 	.range-control[type="range"]::-webkit-slider-thumb:active {
-		border: 1px solid  hsla(var(--border) / 1);
+		border: 1px solid hsla(var(--border) / 1);
 		border-top: 0px solid transparent;
 		border-bottom: 0px solid transparent;
 	}
@@ -244,7 +244,7 @@ body {
 		border-bottom: 0px solid transparent;
 	}
 	.range-control[type="range"]::-moz-range-thumb:active {
-		border: 1px solid  hsla(var(--border) / 1);
+		border: 1px solid hsla(var(--border) / 1);
 		border-top: 0px solid transparent;
 		border-bottom: 0px solid transparent;
 	}

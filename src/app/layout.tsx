@@ -14,13 +14,30 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<>
 			<html lang="en" suppressHydrationWarning>
 				<head>
-					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-					<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
-					<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-					<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+					<link
+						href="https://fonts.googleapis.com/icon?family=Material+Icons"
+						rel="stylesheet"
+					/>
+					<link
+						href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+						rel="stylesheet"
+					/>
+					<link
+						href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+						rel="stylesheet"
+					/>
+					<link
+						href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+						rel="stylesheet"
+					/>
 				</head>
-				<body 
-					style={{ "--header-height": "50px", "--footer-height": "150px" } as React.CSSProperties}
+				<body
+					style={
+						{
+							"--header-height": "50px",
+							"--footer-height": "150px",
+						} as React.CSSProperties
+					}
 				>
 					<GlobalProvider>
 						<ThemeProvider
@@ -29,15 +46,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 							enableSystem
 							disableTransitionOnChange
 						>
-							<Header 
-								className="h-[var(--header-height)] border-b border-[hsla(var(--border)/0.4)]"
-							/>
-							<main className="min-h-[calc(100vh-60px-150px)]">
-							{children}
-							</main>
-							<Footer 
-								className="h-[var(--footer-height)]"
-							/>
+							<Header className="h-[var(--header-height)] border-b border-[hsla(var(--border)/0.4)]" />
+							<main className="min-h-[calc(100vh-60px-150px)]">{children}</main>
+							<Footer className="h-[var(--footer-height)]" />
 							<ToastMessenger />
 						</ThemeProvider>
 					</GlobalProvider>
