@@ -118,7 +118,14 @@ export function JsonProcessor({
 	}, [jsonData]);
 
 	//
-	const handleDownload = () => {
+	const handleDownload = async () => {
+		const validation = editorInstance.current?.validate();
+		const errors = (await validation) as unknown as Record<string, string>[];
+		if (errors.length) {
+			toast.error("JSON data 錯誤: " + errors[0]);
+			return 
+		}
+
 		const json = editorInstance.current?.get();
 		const blob = new Blob([JSON.stringify(json, null, 2)], {
 			type: "application/json",
@@ -133,14 +140,32 @@ export function JsonProcessor({
 	};
 
 	const handleCopy = async () => {
+		const validation = editorInstance.current?.validate();
+		const errors = (await validation) as unknown as Record<string, string>[];
+		if (errors.length) {
+			toast.error("JSON data 錯誤: " + errors[0]);
+			return 
+		}
 		try {
-			const jsonDataStr = JSON.stringify(jsonData);
-			await navigator.clipboard.writeText(jsonDataStr);
+			const json = editorInstance.current?.get();
+			const jsonDataStr = JSON.stringify(json);
+	
+			if (navigator.clipboard && navigator.clipboard.writeText) {
+				await navigator.clipboard.writeText(jsonDataStr);
+			} else {
+				// 備用方法
+				const textArea = document.createElement("textarea");
+				textArea.value = jsonDataStr;
+				document.body.appendChild(textArea);
+				textArea.select();
+				document?.execCommand("copy");
+				document.body.removeChild(textArea);
+			}
 			toast.success("JSON 已複製到剪貼簿!");
 		} catch (err) {
 			toast.error("複製失敗: " + err);
 		}
-	};
+	};	
 
 	const handleMode = () => {
 		setMode((v) => (v === "tree" ? "code" : "tree"));
