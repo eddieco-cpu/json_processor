@@ -13,6 +13,19 @@ export function middleware(request: NextRequest) {
 
 	const response = NextResponse.next();
 
+	// 取得請求方法
+	const method = request.method;
+	const url = request.url;
+
+	// 針對 GET & POST 請求紀錄日誌
+	if (method === "GET") {
+		console.log(`[GET Request] URL: ${url}`);
+	} 
+	if (method === "POST") {
+		console.log(`[POST Request] URL: ${url}`);
+	}
+
+
 	// 設定 CORS Headers
 	const origin = request.headers.get("origin");
 
