@@ -9,12 +9,16 @@ import {
 import { isMobile, isTablet, isDesktop } from "react-device-detect";
 import { JSONValue } from "@/types/jsonProcessor";
 
+import { useConfirmOnRouteChange } from "@/hooks/useConfirmOnRouteChange";
+
 //
 interface GlobalContextType {
 	isLoading: boolean;
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 	jsonData: JSONValue;
 	setJsonData: React.Dispatch<React.SetStateAction<JSONValue>>;
+	isJsonEdited: boolean;
+	setIsJsonEdited: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 //
@@ -24,6 +28,8 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
 	//
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [jsonData, setJsonData] = useState<JSONValue>("");
+	const [isJsonEdited, setIsJsonEdited] = useState<boolean>(false);
+	const { setEnabledNavigate } = useConfirmOnRouteChange();
 
 	//
 	useEffect(() => {
@@ -35,6 +41,16 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
 		}
 	}, []);
 
+	useEffect(() => {
+		//
+		//console.log("isJsonEdited: ", isJsonEdited);
+		if (isJsonEdited) {
+			setEnabledNavigate(true)
+		} else {
+			setEnabledNavigate(false)
+		}
+	}, [isJsonEdited]);
+
 	//
 	return (
 		<>
@@ -44,6 +60,8 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
 					setIsLoading,
 					jsonData,
 					setJsonData,
+					isJsonEdited, 
+					setIsJsonEdited
 				}}
 			>
 				{children}

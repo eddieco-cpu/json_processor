@@ -20,6 +20,7 @@ import { tabletWidth, useWindowAndScreenWidth } from "@/hooks/useAppWidth";
 
 import { cn } from "@/lib/utils";
 import { generateUUID } from "@/lib/tools";
+import { useGlobalContext } from "@/contexts/globalContext";
 
 import "jsoneditor/dist/jsoneditor.min.css";
 import "@/styles/customJsoneditor.css";
@@ -33,6 +34,8 @@ export function JsonProcessor({
 	setJsonData: (data: any) => void;
 	initMode?: Mode;
 }) {
+	const { isJsonEdited, setIsJsonEdited } = useGlobalContext();
+
 	const editorRef = useRef<HTMLDivElement>(null); // 綁定 editor 容器
 	const editorInstance = useRef<JSONEditor | null>(null); // 儲存 JSONEditor 實例
 	const [mode, setMode] = useState<Mode>(initMode || "tree");
@@ -42,7 +45,6 @@ export function JsonProcessor({
 	);
 	const [isWorking, setIsWorking] = useState<boolean>(false);
 
-	const [id] = useState<string>(generateUUID());
 	const [windowWidth, screenWidth] = useWindowAndScreenWidth();
 
 	useEffect(() => {
@@ -115,7 +117,16 @@ export function JsonProcessor({
 			//   }, 100);
 			// }
 		}
+		if (isWorking && !isJsonEdited) {
+			setIsJsonEdited(true)
+		}
 	}, [jsonData]);
+
+	useEffect(() => {
+		return () => {
+			setIsJsonEdited(false)
+		};
+	}, [])
 
 	//
 	const handleDownload = async () => {
