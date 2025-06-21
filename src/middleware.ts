@@ -1,17 +1,17 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { BASE_PREFIX } from "./lib/tools"; //JSONID_
 
-const allowedOrigin = process.env.ALLOWED_ORIGIN || ""
+// const allowedOrigin = process.env.ALLOWED_ORIGIN || ""
 
-const allowedOrigins = new Set([
-	"http://localhost:5500",
-	"http://127.0.0.1:5500",
-	"http://localhost:5501",
-	"http://127.0.0.1:5501",
-]);
-if (allowedOrigin) {
-  allowedOrigins.add(allowedOrigin);
-}
+// const allowedOrigins = new Set([
+// 	"http://localhost:5500",
+// 	"http://127.0.0.1:5500",
+// 	"http://localhost:5501",
+// 	"http://127.0.0.1:5501",
+// ]);
+// if (allowedOrigin) {
+//   allowedOrigins.add(allowedOrigin);
+// }
 
 export function middleware(request: NextRequest) {
 	//console.log("## middleware.ts: ## req.url: ", request.url);
@@ -34,10 +34,11 @@ export function middleware(request: NextRequest) {
 	// 設定 CORS Headers
 	const origin = request.headers.get("origin");
 
-	if (origin && allowedOrigins.has(origin)) {
-		response.headers.set("Access-Control-Allow-Origin", origin);
-	}
+	// if (origin && allowedOrigins.has(origin)) {
+	// 	response.headers.set("Access-Control-Allow-Origin", origin);
+	// }
 	//response.headers.set('Access-Control-Allow-Origin', 'http://localhost:5500');
+	response.headers.set("Access-Control-Allow-Origin", "*");
 	response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS, POST");
 	response.headers.set("Access-Control-Allow-Headers", "Content-Type");
 
