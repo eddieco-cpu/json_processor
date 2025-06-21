@@ -77,5 +77,8 @@ CMD ["node", "server.js"]
 # 不帶參數 (此專案不使用這命令)
 # docker run -p 8099:3000 -d json_processor:1.0
 
-# 帶參數 (BASE_URL used in api redirect) (起 docker 後，如果呼叫 post api，會需要配置)
+# 帶參數 (BASE_URL used in api redirect) (起 docker 後，如果呼叫 post api，會需要配置) (必填)
 # docker run -e BASE_URL="http://localhost:8099/" -p 8099:3000 -d json_processor:1.0
+
+# 帶參數 (ALLOWED_ORIGIN used in CORS) (選填)
+# docker run -e BASE_URL="http://localhost:8099/" -e ALLOWED_ORIGIN="http://localhost:8989" -p 8099:3000 -d json_processor:1.0

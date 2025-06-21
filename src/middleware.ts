@@ -1,12 +1,17 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { BASE_PREFIX } from "./lib/tools"; //JSONID_
 
+const allowedOrigin = process.env.ALLOWED_ORIGIN || ""
+
 const allowedOrigins = new Set([
 	"http://localhost:5500",
 	"http://127.0.0.1:5500",
 	"http://localhost:5501",
 	"http://127.0.0.1:5501",
 ]);
+if (allowedOrigin) {
+  allowedOrigins.add(allowedOrigin);
+}
 
 export function middleware(request: NextRequest) {
 	//console.log("## middleware.ts: ## req.url: ", request.url);
