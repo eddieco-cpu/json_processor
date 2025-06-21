@@ -63,9 +63,19 @@ const formWithFetch = `
 </body>
 `;
 
-const formWithFetchBodyExample = `
+const formWithFetchFormExample = `/**
+ * every stringified JSON is valid
+ * must be a json string
+ */  
+jsonObj="{\\"key\\": \\"value\\"}" 
+`
+
+const formWithFetchBodyExample = `/**
+ * every stringified JSON is valid 
+ * JSON.stringify is necessary
+*/
 {
-  "jsonObj": {"key": "value"}  //every JSON data is valid
+  "jsonObj": "{\\"key\\": \\"value\\"}"  
 }
 `;
 
@@ -247,7 +257,7 @@ export default function page() {
 				<section>
 					<h3>Request Body Example :</h3>
 					<CodeDemo
-						codeString={`jsonObj={"key": "value"} //every JSON data is valid`}
+						codeString={formWithFetchFormExample}
 						className="pt-4"
 					/>
 				</section>
@@ -273,7 +283,7 @@ export default function page() {
 
 				<section>
 					<h3>Request Body Example :</h3>
-					<CodeDemo codeString={formWithFetchBodyExample} />
+					<CodeDemo codeString={formWithFetchBodyExample} className="pt-4" />
 				</section>
 
 				<section>
