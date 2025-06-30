@@ -25,11 +25,10 @@ export function middleware(request: NextRequest) {
 	// 針對 GET & POST 請求紀錄日誌
 	if (method === "GET") {
 		console.log(`[GET Request] URL: ${url}`);
-	} 
+	}
 	if (method === "POST") {
 		console.log(`[POST Request] URL: ${url}`);
 	}
-
 
 	// 設定 CORS Headers
 	const origin = request.headers.get("origin");
@@ -47,5 +46,5 @@ export function middleware(request: NextRequest) {
 
 // 只影響的路徑
 export const config = {
-	matcher: ["/api/:path*", `/JSONID_:path*`],
+	matcher: ["/api/:path*", `/${BASE_PREFIX}:path*`],
 };
